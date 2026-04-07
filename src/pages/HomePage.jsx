@@ -69,6 +69,8 @@ const styles = {
     borderBottom: '2px solid #DDDDDD',
   },
   sectionTitle: { fontSize: '20px', fontWeight: '700' },
+  sectionLabel: { fontSize: '14px', fontWeight: '600', color: '#333333', marginBottom: '2px' },
+  sectionSubheader: { fontSize: '13px', color: '#666666', marginBottom: '16px', marginTop: '0' },
   browseBtn: {
     background: '#333333',
     color: '#FFFFFF',
@@ -189,6 +191,8 @@ export default function HomePage() {
                 <h2 style={styles.sectionTitle}>{section.label}</h2>
                 <Link to={section.path} style={styles.browseBtn}>Browse All</Link>
               </div>
+              <div style={styles.sectionLabel}>Featured</div>
+              <p style={styles.sectionSubheader}>What&apos;s hot right now</p>
               <div style={styles.cardRow}>
                 {section.cards.map((card, i) => (
                   <WikiCard key={i} title={card.title} meta={card.meta} to={section.path} />

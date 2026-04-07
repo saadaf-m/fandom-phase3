@@ -9,36 +9,35 @@ const styles = {
   breadcrumb: { fontSize: '13px', color: '#666666', marginBottom: '16px' },
   pageTitle: { fontSize: '28px', fontWeight: '700', marginBottom: '8px' },
   pageDesc: { fontSize: '15px', color: '#555555', marginBottom: '32px' },
-  sectionTitle: {
+  sectionHeader: {
     fontSize: '18px',
     fontWeight: '700',
-    marginBottom: '16px',
     paddingBottom: '8px',
     borderBottom: '2px solid #DDDDDD',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    marginBottom: '6px',
   },
-  browseBtn: {
-    background: '#333333',
-    color: '#FFFFFF',
-    border: 'none',
-    borderRadius: '4px',
-    padding: '6px 14px',
+  sectionSubheader: {
     fontSize: '13px',
-    cursor: 'pointer',
-    textDecoration: 'none',
+    color: '#666666',
+    marginBottom: '16px',
+    marginTop: '0',
   },
   cardRow: {
     display: 'flex',
     gap: '16px',
     overflowX: 'auto',
     paddingBottom: '8px',
-    marginBottom: '32px',
+    marginBottom: '8px',
   },
+  browseGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+    gap: '16px',
+  },
+  section: { marginBottom: '40px' },
 }
 
-export default function CategoryPage({ category, basePath, trendingWikis, popularWikis }) {
+export default function CategoryPage({ category, featuredWikis, newAndUpdatedWikis, browseAllWikis }) {
   return (
     <div style={styles.page}>
       <Navbar />
@@ -51,35 +50,34 @@ export default function CategoryPage({ category, basePath, trendingWikis, popula
           Explore wikis, fan communities, and content for {category}.
         </p>
 
-        <section>
-          <div style={styles.sectionTitle}>
-            <span>Trending Wikis</span>
-            <Link to={`${basePath}/trending`} style={styles.browseBtn}>See All Trending</Link>
-          </div>
+        <section style={styles.section}>
+          <div style={styles.sectionHeader}>Featured</div>
+          <p style={styles.sectionSubheader}>What&apos;s hot right now</p>
           <div style={styles.cardRow}>
-            {trendingWikis.map((wiki, i) => (
+            {featuredWikis.map((wiki, i) => (
               <WikiCard key={i} title={wiki.title} meta={wiki.meta} to={wiki.to} />
             ))}
           </div>
         </section>
 
-        <section>
-          <div style={styles.sectionTitle}>
-            <span>Popular Wikis</span>
-            <Link to={`${basePath}/popular`} style={styles.browseBtn}>See All Popular</Link>
-          </div>
+        <section style={styles.section}>
+          <div style={styles.sectionHeader}>New &amp; Updated</div>
+          <p style={styles.sectionSubheader}>Recently active wikis</p>
           <div style={styles.cardRow}>
-            {popularWikis.map((wiki, i) => (
+            {newAndUpdatedWikis.map((wiki, i) => (
               <WikiCard key={i} title={wiki.title} meta={wiki.meta} to={wiki.to} />
             ))}
           </div>
         </section>
 
-        <div style={{ textAlign: 'center', marginTop: '16px' }}>
-          <Link to={`${basePath}/browse`} style={{ ...styles.browseBtn, padding: '10px 28px', fontSize: '15px' }}>
-            Browse All {category} Wikis
-          </Link>
-        </div>
+        <section style={styles.section}>
+          <div style={styles.sectionHeader}>Browse All</div>
+          <div style={styles.browseGrid}>
+            {browseAllWikis.map((wiki, i) => (
+              <WikiCard key={i} title={wiki.title} meta={wiki.meta} to={wiki.to} />
+            ))}
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
