@@ -1,114 +1,7 @@
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-
-const styles = {
-  page: { minHeight: '100vh', display: 'flex', flexDirection: 'column' },
-  main: { flex: 1, maxWidth: '1100px', margin: '0 auto', padding: '32px 24px', width: '100%' },
-  breadcrumb: { fontSize: '13px', color: '#666666', marginBottom: '16px' },
-  hero: {
-    background: '#FFFFFF',
-    border: '1px solid #DDDDDD',
-    borderRadius: '6px',
-    padding: '24px',
-    display: 'flex',
-    gap: '24px',
-    marginBottom: '32px',
-    alignItems: 'flex-start',
-  },
-  thumb: {
-    width: '120px',
-    minWidth: '120px',
-    height: '160px',
-    background: '#E8E8E8',
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '11px',
-    color: '#888888',
-    textAlign: 'center',
-  },
-  heroInfo: { flex: 1 },
-  wikiTitle: { fontSize: '28px', fontWeight: '700', marginBottom: '8px' },
-  wikiMeta: { fontSize: '13px', color: '#666666', marginBottom: '12px' },
-  wikiDesc: { fontSize: '15px', lineHeight: '1.6', color: '#333333', marginBottom: '16px' },
-  stats: { display: 'flex', gap: '24px', flexWrap: 'wrap' },
-  statItem: { textAlign: 'center' },
-  statNum: { fontSize: '20px', fontWeight: '700' },
-  statLabel: { fontSize: '11px', color: '#666666' },
-  actionRow: { display: 'flex', gap: '10px', marginTop: '16px' },
-  btn: {
-    background: '#333333',
-    color: '#FFFFFF',
-    border: 'none',
-    borderRadius: '4px',
-    padding: '8px 16px',
-    fontSize: '13px',
-    cursor: 'pointer',
-  },
-  outlineBtn: {
-    background: '#FFFFFF',
-    color: '#1A1A1A',
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    padding: '8px 16px',
-    fontSize: '13px',
-    cursor: 'pointer',
-  },
-  sectionTitle: {
-    fontSize: '18px',
-    fontWeight: '700',
-    marginBottom: '12px',
-    paddingBottom: '8px',
-    borderBottom: '2px solid #DDDDDD',
-  },
-  section: {
-    background: '#FFFFFF',
-    border: '1px solid #DDDDDD',
-    borderRadius: '6px',
-    padding: '20px',
-    marginBottom: '20px',
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-    gap: '12px',
-  },
-  charCard: {
-    background: '#F5F5F5',
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    padding: '12px',
-    textAlign: 'center',
-  },
-  charThumb: {
-    width: '60px',
-    height: '60px',
-    background: '#DDDDDD',
-    borderRadius: '50%',
-    margin: '0 auto 8px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '10px',
-    color: '#888888',
-  },
-  charName: { fontSize: '13px', fontWeight: '600' },
-  charRole: { fontSize: '11px', color: '#666666' },
-  episodeRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '10px 0',
-    borderBottom: '1px solid #F0F0F0',
-    fontSize: '14px',
-  },
-  epNum: { color: '#888888', fontSize: '13px', minWidth: '60px' },
-  epTitle: { flex: 1 },
-  epDuration: { color: '#888888', fontSize: '12px' },
-}
+import WikiSubNavbar from '../components/WikiSubNavbar'
 
 const characters = [
   { name: 'Light Yagami', role: 'Protagonist' },
@@ -127,43 +20,242 @@ const episodes = [
   { num: 'Ep 05', title: 'Tactics', duration: '23 min' },
 ]
 
+const discussions = [
+  { title: 'Who is the true villain — Light or the system?', author: 'LoreKeeper', replies: 84, time: '2h ago' },
+  { title: 'L vs Light: analysing the Narita train scene', author: 'AnimeFan_99', replies: 52, time: '5h ago' },
+  { title: 'Theory: Ryuk knew all along Light would lose', author: 'WikiEditor_42', replies: 37, time: '1d ago' },
+]
+
+const sectionStyle = {
+  background: '#FFFFFF',
+  border: '1px solid #DDDDDD',
+  borderRadius: '8px',
+  padding: '24px',
+  marginBottom: '20px',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+}
+
+const sectionTitleStyle = {
+  fontFamily: "'DM Sans', sans-serif",
+  fontWeight: '700',
+  fontSize: '20px',
+  color: '#1A1A1A',
+  marginBottom: '16px',
+  paddingBottom: '12px',
+  borderBottom: '1px solid #F0F0F0',
+}
+
 export default function AnimeDeathNotePage() {
   return (
-    <div style={styles.page}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
-      <main style={styles.main}>
-        <div style={styles.breadcrumb}>
-          <Link to="/">Home</Link> › <Link to="/anime">Anime</Link> › <Link to="/anime/browse">Browse All</Link> › Death Note
+      <WikiSubNavbar pageCount="6,400" />
+      <main style={{ flex: 1, maxWidth: '1100px', margin: '0 auto', padding: '32px 24px', width: '100%' }}>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: '13px',
+          color: '#888888',
+          marginBottom: '20px',
+        }}>
+          <Link to="/" style={{ color: '#888888', textDecoration: 'none' }}>Home</Link>
+          <span style={{ margin: '0 6px' }}>›</span>
+          <Link to="/anime" style={{ color: '#888888', textDecoration: 'none' }}>Anime</Link>
+          <span style={{ margin: '0 6px' }}>›</span>
+          <Link to="/anime/browse" style={{ color: '#888888', textDecoration: 'none' }}>Browse All</Link>
+          <span style={{ margin: '0 6px' }}>›</span>
+          <span style={{ color: '#1A1A1A' }}>Death Note Wiki</span>
         </div>
 
-        <div style={styles.hero}>
-          <div style={styles.thumb}>[Cover Art]</div>
-          <div style={styles.heroInfo}>
-            <h1 style={styles.wikiTitle}>Death Note Wiki</h1>
-            <div style={styles.wikiMeta}>Thriller · Psychological · Supernatural · 6,400 pages</div>
-            <p style={styles.wikiDesc}>
+        {/* Hero */}
+        <div style={{
+          background: '#FFFFFF',
+          border: '1px solid #DDDDDD',
+          borderRadius: '8px',
+          padding: '28px',
+          display: 'flex',
+          gap: '28px',
+          marginBottom: '24px',
+          alignItems: 'flex-start',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+        }}>
+          <div style={{
+            width: '120px',
+            minWidth: '120px',
+            height: '168px',
+            background: 'linear-gradient(160deg, #991B1B, #1A1A1A)',
+            borderRadius: '6px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '11px',
+            fontFamily: "'DM Sans', sans-serif",
+            color: 'rgba(255,255,255,0.4)',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+          }}>Cover Art</div>
+          <div style={{ flex: 1 }}>
+            <h1 style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: '56px',
+              letterSpacing: '1px',
+              color: '#1A1A1A',
+              lineHeight: '1',
+              marginBottom: '8px',
+            }}>Death Note Wiki</h1>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '13px',
+              color: '#888888',
+              marginBottom: '14px',
+            }}>Thriller · Psychological · Supernatural</div>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '15px',
+              lineHeight: '1.65',
+              color: '#333333',
+              marginBottom: '20px',
+            }}>
               Death Note is a psychological thriller anime based on the manga by Tsugumi Ohba and Takeshi Obata.
-              The story follows Light Yagami, a high school student who discovers a supernatural notebook that allows
-              him to kill anyone whose name he writes in it. As he attempts to create a utopia free of crime,
-              the world's best detective — known only as L — takes up the challenge to stop him.
+              The story follows Light Yagami, a high school student who discovers a supernatural notebook that
+              kills anyone whose name is written in it. As he attempts to build a utopia free of crime under the
+              alias "Kira," the world's greatest detective — known only as L — takes up the challenge to stop him.
             </p>
-            <div style={styles.stats}>
-              <div style={styles.statItem}><div style={styles.statNum}>37</div><div style={styles.statLabel}>Episodes</div></div>
-              <div style={styles.statItem}><div style={styles.statNum}>6,400</div><div style={styles.statLabel}>Wiki Pages</div></div>
-              <div style={styles.statItem}><div style={styles.statNum}>1.2M</div><div style={styles.statLabel}>Monthly Visitors</div></div>
-              <div style={styles.statItem}><div style={styles.statNum}>2006</div><div style={styles.statLabel}>Year Released</div></div>
+            <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap', marginBottom: '20px' }}>
+              {[
+                { num: '37', label: 'Episodes' },
+                { num: '6,400', label: 'Wiki Pages' },
+                { num: '1.2M', label: 'Monthly Visitors' },
+                { num: '2006', label: 'Year Released' },
+              ].map(s => (
+                <div key={s.label} style={{ textAlign: 'center' }}>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: '700',
+                    fontSize: '18px',
+                    color: '#1A1A1A',
+                  }}>{s.num}</div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '11px',
+                    color: '#888888',
+                  }}>{s.label}</div>
+                </div>
+              ))}
             </div>
-            <div style={styles.actionRow}>
-              <button style={styles.btn}>Follow Wiki</button>
-              <button style={styles.outlineBtn}>Add to Collection</button>
-              <button style={styles.outlineBtn}>Mark as Watched</button>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button style={{
+                background: '#FF0054',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '9px 20px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '600',
+                cursor: 'pointer',
+              }}>Follow Wiki</button>
+              <button style={{
+                background: 'transparent',
+                color: '#FF0054',
+                border: '1px solid #FF0054',
+                borderRadius: '8px',
+                padding: '9px 18px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '600',
+                cursor: 'pointer',
+              }}>Add to Collection</button>
+              <button style={{
+                background: 'transparent',
+                color: '#1A1A1A',
+                border: '1px solid #DDDDDD',
+                borderRadius: '8px',
+                padding: '9px 18px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '400',
+                cursor: 'pointer',
+              }}>Mark as Watched</button>
             </div>
           </div>
         </div>
 
-        <div style={styles.section}>
-          <h2 style={styles.sectionTitle}>Plot Overview</h2>
-          <p style={{ fontSize: '14px', lineHeight: '1.7', color: '#333333' }}>
+        {/* Top Discussions */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Top Discussions</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+            {discussions.map((d, i) => (
+              <div key={i} style={{
+                background: '#F9F9F9',
+                border: '1px solid #EEEEEE',
+                borderRadius: '8px',
+                padding: '14px 16px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+              }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    color: '#1A1A1A',
+                    marginBottom: '4px',
+                  }}>{d.title}</div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '12px',
+                    color: '#888888',
+                  }}>by {d.author}</div>
+                </div>
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: '700',
+                    fontSize: '14px',
+                    color: '#1A1A1A',
+                  }}>{d.replies}</div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '11px',
+                    color: '#888888',
+                  }}>replies</div>
+                </div>
+                <div style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '12px',
+                  color: '#AAAAAA',
+                  minWidth: '50px',
+                  textAlign: 'right',
+                }}>{d.time}</div>
+              </div>
+            ))}
+          </div>
+          <Link to="/community" style={{
+            display: 'block',
+            background: '#FF0054',
+            color: '#FFFFFF',
+            border: 'none',
+            borderRadius: '8px',
+            padding: '13px',
+            fontSize: '15px',
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: '600',
+            cursor: 'pointer',
+            textDecoration: 'none',
+            textAlign: 'center',
+          }}>Join the Conversation</Link>
+        </div>
+
+        {/* Plot Overview */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Plot Overview</div>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: '14px',
+            lineHeight: '1.75',
+            color: '#333333',
+          }}>
             When Light Yagami finds the Death Note, he begins using it to kill criminals under the alias "Kira."
             As Kira gains a worldwide following, the secretive detective L becomes his primary adversary.
             The series escalates into a high-stakes battle of wits between two geniuses — one seeking to become
@@ -172,46 +264,96 @@ export default function AnimeDeathNotePage() {
           </p>
         </div>
 
-        <div style={styles.section}>
-          <h2 style={styles.sectionTitle}>Characters</h2>
-          <div style={styles.grid}>
+        {/* Characters */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Characters</div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+            gap: '12px',
+          }}>
             {characters.map((c, i) => (
-              <div key={i} style={styles.charCard}>
-                <div style={styles.charThumb}>[Img]</div>
-                <div style={styles.charName}>{c.name}</div>
-                <div style={styles.charRole}>{c.role}</div>
+              <div key={i} style={{
+                background: '#F9F9F9',
+                border: '1px solid #EEEEEE',
+                borderRadius: '8px',
+                padding: '16px 12px',
+                textAlign: 'center',
+              }}>
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  background: 'linear-gradient(135deg, #991B1B, #530242)',
+                  borderRadius: '50%',
+                  margin: '0 auto 10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '18px',
+                  color: '#FFFFFF',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: '700',
+                }}>{c.name[0]}</div>
+                <div style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: '700',
+                  fontSize: '13px',
+                  color: '#1A1A1A',
+                  marginBottom: '2px',
+                }}>{c.name}</div>
+                <div style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '11px',
+                  color: '#888888',
+                }}>{c.role}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div style={styles.section}>
-          <h2 style={styles.sectionTitle}>Episodes</h2>
+        {/* Episodes */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Episodes</div>
           {episodes.map((ep, i) => (
-            <div key={i} style={styles.episodeRow}>
-              <span style={styles.epNum}>{ep.num}</span>
-              <span style={styles.epTitle}>{ep.title}</span>
-              <span style={styles.epDuration}>{ep.duration}</span>
+            <div key={i} style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '11px 0',
+              borderBottom: i < episodes.length - 1 ? '1px solid #F0F0F0' : 'none',
+            }}>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '13px',
+                color: '#888888',
+                minWidth: '60px',
+              }}>{ep.num}</span>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '14px',
+                color: '#1A1A1A',
+                flex: 1,
+              }}>{ep.title}</span>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '12px',
+                color: '#AAAAAA',
+              }}>{ep.duration}</span>
             </div>
           ))}
-          <div style={{ marginTop: '12px' }}>
-            <button style={styles.outlineBtn}>View All 37 Episodes</button>
+          <div style={{ marginTop: '14px' }}>
+            <button style={{
+              background: 'transparent',
+              color: '#FF0054',
+              border: '1px solid #FF0054',
+              borderRadius: '8px',
+              padding: '8px 18px',
+              fontSize: '14px',
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '600',
+              cursor: 'pointer',
+            }}>View All 37 Episodes</button>
           </div>
-        </div>
-
-        <div style={styles.section}>
-          <h2 style={styles.sectionTitle}>Recent Wiki Activity</h2>
-          {[
-            { user: 'WikiEditor_42', action: 'Updated "Shinigami Eyes" page', time: '2h ago' },
-            { user: 'AnimeFan_99', action: 'Added new image to Light Yagami article', time: '5h ago' },
-            { user: 'LoreKeeper', action: 'Created page: "Death Note Rules (Complete List)"', time: '1d ago' },
-          ].map((item, i) => (
-            <div key={i} style={{ ...styles.episodeRow }}>
-              <span style={{ fontWeight: '600', fontSize: '13px', minWidth: '120px' }}>{item.user}</span>
-              <span style={{ flex: 1, fontSize: '13px', color: '#444444' }}>{item.action}</span>
-              <span style={styles.epDuration}>{item.time}</span>
-            </div>
-          ))}
         </div>
       </main>
       <Footer />

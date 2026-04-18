@@ -2,111 +2,11 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-const styles = {
-  page: { minHeight: '100vh', display: 'flex', flexDirection: 'column' },
-  main: { flex: 1, maxWidth: '1100px', margin: '0 auto', padding: '32px 24px', width: '100%' },
-  profileHeader: {
-    background: '#FFFFFF',
-    border: '1px solid #DDDDDD',
-    borderRadius: '6px',
-    padding: '24px',
-    display: 'flex',
-    gap: '20px',
-    alignItems: 'center',
-    marginBottom: '24px',
-  },
-  avatarLarge: {
-    width: '80px',
-    height: '80px',
-    background: '#DDDDDD',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '12px',
-    color: '#888888',
-    flexShrink: 0,
-  },
-  profileName: { fontSize: '22px', fontWeight: '700', marginBottom: '4px' },
-  profileMeta: { fontSize: '13px', color: '#666666', marginBottom: '10px' },
-  statsRow: { display: 'flex', gap: '20px', flexWrap: 'wrap' },
-  stat: { textAlign: 'center' },
-  statNum: { fontSize: '18px', fontWeight: '700' },
-  statLabel: { fontSize: '11px', color: '#666666' },
-  editBtn: {
-    marginLeft: 'auto',
-    background: '#FFFFFF',
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    padding: '8px 16px',
-    fontSize: '13px',
-    cursor: 'pointer',
-    alignSelf: 'flex-start',
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '20px',
-  },
-  section: {
-    background: '#FFFFFF',
-    border: '1px solid #DDDDDD',
-    borderRadius: '6px',
-    padding: '20px',
-  },
-  sectionTitle: {
-    fontSize: '15px',
-    fontWeight: '700',
-    marginBottom: '14px',
-    paddingBottom: '8px',
-    borderBottom: '1px solid #EEEEEE',
-  },
-  menuItem: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '10px 0',
-    borderBottom: '1px solid #F5F5F5',
-    fontSize: '14px',
-    cursor: 'pointer',
-  },
-  chevron: { color: '#AAAAAA', fontSize: '14px' },
-  wikiRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-    padding: '8px 0',
-    borderBottom: '1px solid #F5F5F5',
-  },
-  wikiThumb: {
-    width: '36px',
-    height: '36px',
-    background: '#E8E8E8',
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '9px',
-    color: '#888888',
-    flexShrink: 0,
-  },
-  wikiName: { fontSize: '13px', fontWeight: '600' },
-  wikiMeta: { fontSize: '11px', color: '#888888' },
-  activityItem: {
-    padding: '8px 0',
-    borderBottom: '1px solid #F5F5F5',
-    fontSize: '13px',
-    color: '#444444',
-  },
-  activityTime: { fontSize: '11px', color: '#888888', marginTop: '2px' },
-}
-
 const recentWikis = [
-  { name: 'Zelda Encyclopedia', meta: 'Games · Viewed 1h ago' },
-  { name: 'Death Note Wiki', meta: 'Anime · Viewed 3h ago' },
-  { name: 'GTA Wiki', meta: 'Games · Viewed yesterday' },
-  { name: 'Taylor Swift Wiki', meta: 'Music · Viewed 2 days ago' },
+  { name: 'Zelda Encyclopedia', meta: 'Games · Viewed 1h ago', color: '#2563EB' },
+  { name: 'Death Note Wiki', meta: 'Anime · Viewed 3h ago', color: '#DC2626' },
+  { name: 'GTA Wiki', meta: 'Games · Viewed yesterday', color: '#2563EB' },
+  { name: 'Taylor Swift Wiki', meta: 'Music · Viewed 2 days ago', color: '#059669' },
 ]
 
 const contributions = [
@@ -115,82 +15,306 @@ const contributions = [
   { text: 'Created page "Timeline of Events" on GTA Wiki', time: '3 days ago' },
 ]
 
+const menuItems = [
+  { label: 'View Profile' },
+  { label: 'Visit My Fandom' },
+  { label: 'Activity' },
+  { label: 'Find a New Wiki' },
+]
+
 export default function AccountPage() {
   return (
-    <div style={styles.page}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
-      <main style={styles.main}>
-        <div style={styles.profileHeader}>
-          <div style={styles.avatarLarge}>[Avatar]</div>
-          <div>
-            <div style={styles.profileName}>FandomUser_01</div>
-            <div style={styles.profileMeta}>Member since January 2022 · Contributor</div>
-            <div style={styles.statsRow}>
-              <div style={styles.stat}><div style={styles.statNum}>142</div><div style={styles.statLabel}>Edits</div></div>
-              <div style={styles.stat}><div style={styles.statNum}>23</div><div style={styles.statLabel}>Pages Created</div></div>
-              <div style={styles.stat}><div style={styles.statNum}>8</div><div style={styles.statLabel}>Wikis Followed</div></div>
-              <div style={styles.stat}><div style={styles.statNum}>3</div><div style={styles.statLabel}>Collections</div></div>
+      <main style={{ flex: 1, maxWidth: '1100px', margin: '0 auto', padding: '40px 24px', width: '100%' }}>
+        <h1 style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: '52px',
+          letterSpacing: '1px',
+          color: '#1A1A1A',
+          lineHeight: '1',
+          marginBottom: '28px',
+        }}>My Account</h1>
+
+        {/* Profile header */}
+        <div style={{
+          background: '#FFFFFF',
+          border: '1px solid #DDDDDD',
+          borderRadius: '8px',
+          padding: '28px',
+          display: 'flex',
+          gap: '20px',
+          alignItems: 'center',
+          marginBottom: '28px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+        }}>
+          <div style={{
+            width: '80px',
+            height: '80px',
+            background: '#FF0054',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '28px',
+            color: '#FFFFFF',
+            fontFamily: "'Bebas Neue', sans-serif",
+            flexShrink: 0,
+          }}>F</div>
+          <div style={{ flex: 1 }}>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '700',
+              fontSize: '22px',
+              color: '#1A1A1A',
+              marginBottom: '4px',
+            }}>FandomUser_01</div>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '13px',
+              color: '#888888',
+              marginBottom: '14px',
+            }}>Member since January 2022 · Contributor</div>
+            <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap' }}>
+              {[
+                { num: '142', label: 'Edits' },
+                { num: '23', label: 'Pages Created' },
+                { num: '8', label: 'Wikis Followed' },
+                { num: '3', label: 'Collections' },
+              ].map(s => (
+                <div key={s.label} style={{ textAlign: 'center' }}>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: '700',
+                    fontSize: '18px',
+                    color: '#1A1A1A',
+                  }}>{s.num}</div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '11px',
+                    color: '#888888',
+                  }}>{s.label}</div>
+                </div>
+              ))}
             </div>
           </div>
-          <button style={styles.editBtn}>Edit Profile</button>
+          <button style={{
+            background: 'transparent',
+            border: '1px solid #DDDDDD',
+            borderRadius: '8px',
+            padding: '9px 18px',
+            fontSize: '13px',
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: '600',
+            cursor: 'pointer',
+            color: '#1A1A1A',
+            alignSelf: 'flex-start',
+          }}>Edit Profile</button>
         </div>
 
-        <div style={styles.grid}>
-          <div style={styles.section}>
-            <div style={styles.sectionTitle}>My Account</div>
-            {[
-              { label: 'View Profile' },
-              { label: 'Visit My Fandom' },
-              { label: 'Activity' },
-              { label: 'Find a New Fandom' },
-            ].map(item => (
-              <div key={item.label} style={styles.menuItem}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '20px',
+        }}>
+          {/* My Account menu */}
+          <div style={{
+            background: '#FFFFFF',
+            border: '1px solid #DDDDDD',
+            borderRadius: '8px',
+            padding: '20px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          }}>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '700',
+              fontSize: '16px',
+              color: '#1A1A1A',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid #F0F0F0',
+            }}>My Account</div>
+            {menuItems.map((item, i) => (
+              <div key={item.label} style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '11px 0',
+                borderBottom: i < menuItems.length - 1 ? '1px solid #F5F5F5' : 'none',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                color: '#1A1A1A',
+                cursor: 'pointer',
+              }}>
                 <span>{item.label}</span>
-                <span style={styles.chevron}>›</span>
+                <span style={{ color: '#BBBBBB', fontSize: '16px' }}>›</span>
               </div>
             ))}
           </div>
 
-          <div style={styles.section}>
-            <div style={styles.sectionTitle}>Recently Viewed Wikis</div>
+          {/* Recently Viewed Wikis */}
+          <div style={{
+            background: '#FFFFFF',
+            border: '1px solid #DDDDDD',
+            borderRadius: '8px',
+            padding: '20px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          }}>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '700',
+              fontSize: '16px',
+              color: '#1A1A1A',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid #F0F0F0',
+            }}>Recently Viewed Wikis</div>
             {recentWikis.map((wiki, i) => (
-              <div key={i} style={styles.wikiRow}>
-                <div style={styles.wikiThumb}>[W]</div>
+              <div key={i} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '9px 0',
+                borderBottom: i < recentWikis.length - 1 ? '1px solid #F5F5F5' : 'none',
+              }}>
+                <div style={{
+                  width: '36px',
+                  height: '36px',
+                  background: wiki.color,
+                  borderRadius: '6px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '10px',
+                  color: 'rgba(255,255,255,0.7)',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: '700',
+                  flexShrink: 0,
+                }}>W</div>
                 <div>
-                  <div style={styles.wikiName}>{wiki.name}</div>
-                  <div style={styles.wikiMeta}>{wiki.meta}</div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    color: '#1A1A1A',
+                  }}>{wiki.name}</div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '12px',
+                    color: '#888888',
+                  }}>{wiki.meta}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div style={styles.section}>
-            <div style={styles.sectionTitle}>My Contributions</div>
+          {/* My Contributions */}
+          <div style={{
+            background: '#FFFFFF',
+            border: '1px solid #DDDDDD',
+            borderRadius: '8px',
+            padding: '20px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          }}>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '700',
+              fontSize: '16px',
+              color: '#1A1A1A',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid #F0F0F0',
+            }}>My Contributions</div>
             {contributions.map((c, i) => (
-              <div key={i} style={styles.activityItem}>
-                <div>{c.text}</div>
-                <div style={styles.activityTime}>{c.time}</div>
+              <div key={i} style={{
+                padding: '9px 0',
+                borderBottom: i < contributions.length - 1 ? '1px solid #F5F5F5' : 'none',
+              }}>
+                <div style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '13px',
+                  color: '#333333',
+                  marginBottom: '2px',
+                }}>{c.text}</div>
+                <div style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '11px',
+                  color: '#888888',
+                }}>{c.time}</div>
               </div>
             ))}
-            <div style={{ marginTop: '12px' }}>
-              <button style={{ background: '#FFFFFF', border: '1px solid #DDDDDD', borderRadius: '4px', padding: '6px 14px', fontSize: '13px', cursor: 'pointer' }}>
-                View All Contributions
-              </button>
+            <div style={{ marginTop: '14px' }}>
+              <button style={{
+                background: 'transparent',
+                border: '1px solid #DDDDDD',
+                borderRadius: '6px',
+                padding: '7px 16px',
+                fontSize: '13px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '600',
+                cursor: 'pointer',
+                color: '#1A1A1A',
+              }}>View All Contributions</button>
             </div>
           </div>
 
-          <div style={styles.section}>
-            <div style={styles.sectionTitle}>Quick Actions</div>
+          {/* Quick Actions */}
+          <div style={{
+            background: '#FFFFFF',
+            border: '1px solid #DDDDDD',
+            borderRadius: '8px',
+            padding: '20px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          }}>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '700',
+              fontSize: '16px',
+              color: '#1A1A1A',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid #F0F0F0',
+            }}>Quick Actions</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <Link to="/account/post" style={{ background: '#333333', color: '#FFFFFF', border: 'none', borderRadius: '4px', padding: '10px 16px', fontSize: '13px', cursor: 'pointer', textDecoration: 'none', textAlign: 'center' }}>
-                Start a New Wiki
-              </Link>
-              <Link to="/community" style={{ background: '#FFFFFF', color: '#1A1A1A', border: '1px solid #DDDDDD', borderRadius: '4px', padding: '10px 16px', fontSize: '13px', cursor: 'pointer', textDecoration: 'none', textAlign: 'center' }}>
-                Go to Community Feed
-              </Link>
-              <button style={{ background: '#FFFFFF', color: '#1A1A1A', border: '1px solid #DDDDDD', borderRadius: '4px', padding: '10px 16px', fontSize: '13px', cursor: 'pointer' }}>
-                Account Settings
-              </button>
+              <Link to="/account/post" style={{
+                background: '#FF0054',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '11px 16px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '600',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                textAlign: 'center',
+                display: 'block',
+              }}>Start a New Wiki</Link>
+              <Link to="/community" style={{
+                background: 'transparent',
+                color: '#FF0054',
+                border: '1px solid #FF0054',
+                borderRadius: '8px',
+                padding: '11px 16px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '600',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                textAlign: 'center',
+                display: 'block',
+              }}>Go to Community Feed</Link>
+              <button style={{
+                background: 'transparent',
+                color: '#1A1A1A',
+                border: '1px solid #DDDDDD',
+                borderRadius: '8px',
+                padding: '11px 16px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '400',
+                cursor: 'pointer',
+              }}>Account Settings</button>
             </div>
           </div>
         </div>

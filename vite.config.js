@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/fandom-wireframe-phase-2/',
+  base: '/fandom-redesign/',
 })

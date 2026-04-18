@@ -1,85 +1,7 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-
-const styles = {
-  page: { minHeight: '100vh', display: 'flex', flexDirection: 'column' },
-  main: { flex: 1, maxWidth: '700px', margin: '0 auto', padding: '32px 24px', width: '100%' },
-  breadcrumb: { fontSize: '13px', color: '#666666', marginBottom: '16px' },
-  heading: { fontSize: '26px', fontWeight: '700', marginBottom: '8px' },
-  subheading: { fontSize: '14px', color: '#555555', marginBottom: '28px' },
-  form: {
-    background: '#FFFFFF',
-    border: '1px solid #DDDDDD',
-    borderRadius: '6px',
-    padding: '28px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-  },
-  field: { display: 'flex', flexDirection: 'column', gap: '6px' },
-  label: { fontSize: '14px', fontWeight: '600' },
-  input: {
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    padding: '10px 12px',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-    outline: 'none',
-  },
-  textarea: {
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    padding: '10px 12px',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-    outline: 'none',
-    minHeight: '120px',
-    resize: 'vertical',
-  },
-  select: {
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    padding: '10px 12px',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-    background: '#FFFFFF',
-    outline: 'none',
-  },
-  btnRow: { display: 'flex', gap: '12px', justifyContent: 'flex-end' },
-  submitBtn: {
-    background: '#333333',
-    color: '#FFFFFF',
-    border: 'none',
-    borderRadius: '4px',
-    padding: '10px 24px',
-    fontSize: '14px',
-    cursor: 'pointer',
-    fontFamily: 'inherit',
-  },
-  cancelBtn: {
-    background: '#FFFFFF',
-    color: '#1A1A1A',
-    border: '1px solid #DDDDDD',
-    borderRadius: '4px',
-    padding: '10px 20px',
-    fontSize: '14px',
-    cursor: 'pointer',
-    fontFamily: 'inherit',
-    textDecoration: 'none',
-    display: 'inline-block',
-  },
-  successBox: {
-    background: '#F0FFF0',
-    border: '1px solid #AADDAA',
-    borderRadius: '6px',
-    padding: '20px',
-    textAlign: 'center',
-    fontSize: '15px',
-    color: '#1A4A1A',
-  },
-}
 
 const categories = ['Games', 'Anime', 'TV', 'Movies', 'Music', 'Comics', 'Books', 'Other']
 
@@ -88,7 +10,6 @@ export default function PostPage() {
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -98,78 +19,228 @@ export default function PostPage() {
   }
 
   return (
-    <div style={styles.page}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
-      <main style={styles.main}>
-        <div style={styles.breadcrumb}>
-          <Link to="/">Home</Link> › <Link to="/community">Community</Link> › Post a New Fandom
+      <main style={{ flex: 1, maxWidth: '700px', margin: '0 auto', padding: '40px 24px', width: '100%' }}>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: '13px',
+          color: '#888888',
+          marginBottom: '20px',
+        }}>
+          <Link to="/" style={{ color: '#888888', textDecoration: 'none' }}>Home</Link>
+          <span style={{ margin: '0 6px' }}>›</span>
+          <Link to="/community" style={{ color: '#888888', textDecoration: 'none' }}>Community</Link>
+          <span style={{ margin: '0 6px' }}>›</span>
+          <span style={{ color: '#1A1A1A' }}>Post a New Wiki</span>
         </div>
-        <h1 style={styles.heading}>Post a New Fandom</h1>
-        <p style={styles.subheading}>Share a fandom or start a new wiki community.</p>
+
+        <h1 style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: '52px',
+          letterSpacing: '1px',
+          color: '#1A1A1A',
+          lineHeight: '1',
+          marginBottom: '8px',
+        }}>Post a New Wiki</h1>
+        <p style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: '15px',
+          color: '#666666',
+          marginBottom: '32px',
+        }}>Share a wiki or start a new fan community.</p>
 
         {submitted ? (
-          <div style={styles.successBox}>
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>✓</div>
-            <div style={{ fontWeight: '700', marginBottom: '8px' }}>Your post has been submitted!</div>
-            <div style={{ marginBottom: '16px' }}>"{title}" has been added to the {category} community.</div>
-            <Link to="/community" style={{ ...styles.submitBtn, display: 'inline-block', textDecoration: 'none' }}>
-              Back to Community
-            </Link>
+          <div style={{
+            background: '#FFFFFF',
+            border: '1px solid #DDDDDD',
+            borderRadius: '8px',
+            padding: '40px 32px',
+            textAlign: 'center',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+          }}>
+            <div style={{
+              width: '56px',
+              height: '56px',
+              background: '#FF0054',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 16px',
+              fontSize: '24px',
+              color: '#FFFFFF',
+            }}>✓</div>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '700',
+              fontSize: '20px',
+              color: '#1A1A1A',
+              marginBottom: '8px',
+            }}>Your post has been submitted!</div>
+            <div style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '15px',
+              color: '#666666',
+              marginBottom: '28px',
+            }}>"{title}" has been added to the {category} community.</div>
+            <Link to="/community" style={{
+              background: '#FF0054',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '12px 28px',
+              fontSize: '15px',
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '600',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}>Back to Community</Link>
           </div>
         ) : (
-          <form style={styles.form} onSubmit={handleSubmit}>
-            <div style={styles.field}>
-              <label style={styles.label} htmlFor="wiki-title">Wiki / Fandom Title *</label>
+          <form
+            style={{
+              background: '#FFFFFF',
+              border: '1px solid #DDDDDD',
+              borderRadius: '8px',
+              padding: '32px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '22px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+            }}
+            onSubmit={handleSubmit}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
+              <label style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#1A1A1A',
+              }} htmlFor="wiki-title">Wiki Title *</label>
               <input
                 id="wiki-title"
-                style={styles.input}
                 type="text"
-                placeholder="e.g. The Last of Us, Frieren, Hollow Knight..."
+                placeholder="e.g. The Last of Us, Frieren, Hollow Knight…"
                 value={title}
                 onChange={e => setTitle(e.target.value)}
                 required
+                style={{
+                  border: '1px solid #DDDDDD',
+                  borderRadius: '6px',
+                  padding: '11px 14px',
+                  fontSize: '14px',
+                  fontFamily: "'DM Sans', sans-serif",
+                  outline: 'none',
+                  color: '#1A1A1A',
+                }}
               />
             </div>
 
-            <div style={styles.field}>
-              <label style={styles.label} htmlFor="category">Category *</label>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
+              <label style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#1A1A1A',
+              }} htmlFor="category">Category *</label>
               <select
                 id="category"
-                style={styles.select}
                 value={category}
                 onChange={e => setCategory(e.target.value)}
                 required
+                style={{
+                  border: '1px solid #DDDDDD',
+                  borderRadius: '6px',
+                  padding: '11px 14px',
+                  fontSize: '14px',
+                  fontFamily: "'DM Sans', sans-serif",
+                  background: '#FFFFFF',
+                  outline: 'none',
+                  color: '#1A1A1A',
+                }}
               >
-                <option value="">Select a category...</option>
+                <option value="">Select a category…</option>
                 {categories.map(c => (
                   <option key={c} value={c}>{c}</option>
                 ))}
               </select>
             </div>
 
-            <div style={styles.field}>
-              <label style={styles.label} htmlFor="description">Description</label>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
+              <label style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#1A1A1A',
+              }} htmlFor="description">Description</label>
               <textarea
                 id="description"
-                style={styles.textarea}
-                placeholder="Tell the community what this fandom is about..."
+                placeholder="Tell the community what this wiki is about…"
                 value={description}
                 onChange={e => setDescription(e.target.value)}
+                style={{
+                  border: '1px solid #DDDDDD',
+                  borderRadius: '6px',
+                  padding: '11px 14px',
+                  fontSize: '14px',
+                  fontFamily: "'DM Sans', sans-serif",
+                  outline: 'none',
+                  minHeight: '120px',
+                  resize: 'vertical',
+                  color: '#1A1A1A',
+                }}
               />
             </div>
 
-            <div style={styles.field}>
-              <label style={styles.label}>Tags (optional)</label>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
+              <label style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#1A1A1A',
+              }}>Tags (optional)</label>
               <input
-                style={styles.input}
                 type="text"
-                placeholder="Add tags separated by commas..."
+                placeholder="Add tags separated by commas…"
+                style={{
+                  border: '1px solid #DDDDDD',
+                  borderRadius: '6px',
+                  padding: '11px 14px',
+                  fontSize: '14px',
+                  fontFamily: "'DM Sans', sans-serif",
+                  outline: 'none',
+                  color: '#1A1A1A',
+                }}
               />
             </div>
 
-            <div style={styles.btnRow}>
-              <Link to="/community" style={styles.cancelBtn}>Cancel</Link>
-              <button type="submit" style={styles.submitBtn}>Submit Post</button>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+              <Link to="/community" style={{
+                background: 'transparent',
+                color: '#1A1A1A',
+                border: '1px solid #DDDDDD',
+                borderRadius: '8px',
+                padding: '11px 22px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '400',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                display: 'inline-block',
+              }}>Cancel</Link>
+              <button type="submit" style={{
+                background: '#FF0054',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '11px 28px',
+                fontSize: '14px',
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: '600',
+                cursor: 'pointer',
+              }}>Submit Post</button>
             </div>
           </form>
         )}
